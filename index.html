@@ -1006,5 +1006,33 @@
             }
         });
     </script>
+<!-- كود الحماية من النسخ -->
+<style>
+  body {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+  }
+</style>
+
+<script>
+  document.addEventListener('contextmenu', e => e.preventDefault());
+  ['copy', 'cut', 'selectstart'].forEach(evt => {
+    document.addEventListener(evt, e => e.preventDefault());
+  });
+  document.addEventListener('touchstart', function(e) {
+    if (e.touches.length > 1) e.preventDefault();
+  }, { passive: false });
+  document.addEventListener('touchstart', function(e) {
+    window.touchTimeout = setTimeout(() => {
+      e.target.dispatchEvent(new Event('touchcancel'));
+    }, 500);
+  });
+  document.addEventListener('touchend', function() {
+    clearTimeout(window.touchTimeout);
+  });
+</script>
 </body>
 </html>
